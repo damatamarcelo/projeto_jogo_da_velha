@@ -4,7 +4,7 @@ let boxes = document.querySelectorAll(".box")
 let buttons = document.querySelectorAll("#buttons-container button")
 let messageContainer = document.querySelector("#message")
 let messageText = document.querySelector("#message p")
-let secoundPlayer;
+let secondPlayer;
 
 // Contador de jogadas
 let player1 = 0
@@ -29,6 +29,9 @@ for (let i = 0; i < boxes.length; i++) {
             } else {
                 player2++
             }
+
+            // Checar quem ganhou
+            checkWinCondition()
         }
     })
 }
@@ -47,7 +50,7 @@ function checkEl(player1, player2) {
 }
 
 // Verifica quem ganhou
-function checkinCondition() {
+function checkWinCondition() {
 
     let b1 = document.getElementById("block-1")
     let b2 = document.getElementById("block-2")
@@ -207,7 +210,7 @@ function declareWinner(winner) {
     if (winner == "x") {
         scoreboardX.textContent = parseInt(scoreboardX.textContent) + 1
         msg = "O jogador 1 venceu"
-    } else if (winner == "y") {
+    } else if (winner == "o") {
         scoreboardY.textContent = parseInt(scoreboardY.textContent) + 1
         msg = "O jogador 2 venceu"
     } else {
@@ -217,4 +220,20 @@ function declareWinner(winner) {
     // Exibir mensagem
     messageText.innerHTML = msg
     messageContainer.classList.remove("hide")
+
+    // Esconder mensagem
+    setTimeout(function () {
+        messageContainer.classList.add("hide")
+    }, 3000)
+
+    // Zerar jogada
+    player1 = 0
+    player2 = 0
+
+    // Remover x e o
+    let boxesToRemove = document.querySelectorAll(".box div")
+
+    for (let i = 0; i < boxesToRemove.length; i++) {
+        boxesToRemove[i].parentNode.removeChild(boxesToRemove[i])
+    }
 }
