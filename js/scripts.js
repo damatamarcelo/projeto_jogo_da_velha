@@ -45,3 +45,63 @@ function checkEl(player1, player2) {
 
     return el
 }
+
+// Verifica quem ganhou
+function checkinCondition() {
+
+    let b1 = document.getElementById("block-1")
+    let b2 = document.getElementById("block-2")
+    let b3 = document.getElementById("block-3")
+    let b4 = document.getElementById("block-4")
+    let b5 = document.getElementById("block-5")
+    let b6 = document.getElementById("block-6")
+    let b7 = document.getElementById("block-7")
+    let b8 = document.getElementById("block-8")
+    let b9 = document.getElementById("block-9")
+
+    // Jogadas na horizontal
+    if (b1.childNodes.length > 0 && b2.childNodes.length > 0 && b3.childNodes.length > 0) {
+
+        let b1Child = b1.childNodes[0].className
+        let b2Child = b2.childNodes[0].className
+        let b3Child = b3.childNodes[0].className
+
+        if (b1Child == "X" && b2Child == "X" && b3Child == "X") {
+            // x
+            console.log("x venceu")
+        } else if (b1Child == "o" && b2Child == "o" && b3Child == "o") {
+            // o
+            console.log("o venceu")
+        }
+    }
+
+    if (b4.childNodes.length > 0 && b5.childNodes.length > 0 && b6.childNodes.length > 0) {
+
+        let b4Child = b4.childNodes[0].className
+        let b5Child = b5.childNodes[0].className
+        let b6Child = b6.childNodes[0].className
+
+        if (b4Child == "X" && b5Child == "X" && b6Child == "X") {
+            // x
+            console.log("x venceu")
+        } else if (b4Child == "o" && b5Child == "o" && b6Child == "o") {
+            // o
+            console.log("o venceu")
+        }
+    }
+
+    if (b7.childNodes.length > 0 && b8.childNodes.length > 0 && b9.childNodes.length > 0) {
+
+        let b7Child = b7.childNodes[0].className
+        let b8Child = b8.childNodes[0].className
+        let b9Child = b9.childNodes[0].className
+
+        if (b7Child == "X" && b8Child == "X" && b9Child == "X") {
+            // x
+            console.log("x venceu")
+        } else if (b7Child == "o" && b8Child == "o" && b9Child == "o") {
+            // o
+            console.log("o venceu")
+        }
+    }
+}
