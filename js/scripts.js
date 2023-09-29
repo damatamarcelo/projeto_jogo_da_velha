@@ -26,6 +26,14 @@ for (let i = 0; i < boxes.length; i++) {
             // Computando a jogada
             if (player1 == player2) {
                 player1++
+
+                if (secondPlayer = "ai-player") {
+
+                    //Função que executa a jogada
+                    computerPlay()
+                    player2++
+                }
+
             } else {
                 player2++
             }
@@ -33,6 +41,24 @@ for (let i = 0; i < boxes.length; i++) {
             // Checar quem ganhou
             checkWinCondition()
         }
+    })
+}
+
+// Evento que verifica se é 2 players ou IA
+for (let i = 0; i < buttons.length; i++) {
+
+    buttons[i].addEventListener("click", function () {
+
+        secondPlayer = this.getAttribute("id")
+
+        for (let j = 0; j < buttons.length; j++) {
+            buttons[j].style.display = "none"
+        }
+
+        setTimeout(function () {
+            let container = document.querySelector("#container")
+            container.classList.remove("hide")
+        }, 500)
     })
 }
 
@@ -235,5 +261,34 @@ function declareWinner(winner) {
 
     for (let i = 0; i < boxesToRemove.length; i++) {
         boxesToRemove[i].parentNode.removeChild(boxesToRemove[i])
+    }
+}
+
+// Lógica que executa a jogada da CPU
+function computerPlay() {
+
+    let cloneO = o.cloneNode(true)
+    counter = 0
+    filled = 0
+
+    for (let i = 0; i < boxes.length; i++) {
+
+        let randomName = Math.floor(Math.random() * 5)
+
+        // Só é preenchido se o 'filho' estiver vazio
+        if (boxes[i].childNodes[0] == undefined) {
+            if (randomName <= 1) {
+                boxes[i].appendChild(cloneO)
+                counter++
+                break
+            }
+            // Checa quantas estão preenchidas
+        } else {
+            filled++
+        }
+    }
+
+    if (counter == 0 && filled < 9) {
+        computerPlay()
     }
 }
